@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mar y Daniel - Boda 30 Mayo 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Lora', 'Georgia', serif;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', 'Georgia', serif;
+            font-weight: 400;
+        }
+        
+        header {
+            background: #7ca2e0;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+        
+        header h1 {
+            font-size: 34px;
+            color: #fff5bf;
+            font-weight: 300;
+        }
+        
+        header a {
+            color: #fff5bf;
+            text-decoration: none;
+            font-weight: 300;
+        }
+        
+        .hero {
+            background: #fff5bf;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 96px;
+            color: #7ca2e0;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+        
+        .hero p {
+            font-size: 27px;
+            color: #a30b37;
+            font-weight: 300;
+        }
+        
+        .divider {
+            background: #fff5bf;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .divider svg {
+            width: 100px;
+            height: 100px;
+        }
+        
+        .locations {
+            background: #fff5bf;
+            padding: 60px 20px;
+        }
+        
+        .location-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 60px;
+            margin-top: 40px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .location {
+            text-align: center;
+        }
+        
+        .location h3 {
+            font-size: 22px;
+            color: #a30b37;
+            font-weight: 300;
+            margin-bottom: 15px;
+        }
+        
+        .location h4 {
+            font-size: 45px;
+            color: #558BE3;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            font-weight: 400;
+        }
+        
+        .location p {
+            font-size: 16px;
+            color: #7ca2e0;
+            margin-bottom: 25px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 8px 20px;
+            background: transparent;
+            color: #a30b37;
+            text-decoration: none;
+            border: 2px solid #a30b37;
+            border-radius: 50px;
+            transition: background 0.3s, color 0.3s;
+            font-size: 14px;
+        }
+        
+        .btn:hover {
+            background: #a30b37;
+            color: #fff5bf;
+        }
+        
+        .rsvp .btn {
+            background: transparent;
+            color: #fff5bf;
+            border: 2px solid #fff5bf;
+            border-radius: 50px;
+            padding: 8px 20px;
+            font-size: 14px;
+        }
+        
+        .rsvp .btn:hover {
+            background: #fff5bf;
+            color: #a30b37;
+        }
+        
+        .rsvp {
+            background: #a30b37;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .rsvp h2 {
+            font-size: 46px;
+            color: #fff5bf;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+        
+        .rsvp p {
+            font-size: 23px;
+            color: #fff5bf;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+        
+        .gifts {
+            background: #fff5bf;
+            color: #a30b37;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .gifts h2 {
+            font-size: 60px;
+            margin-bottom: 30px;
+            font-weight: 400;
+            color: #a30b37;
+        }
+        
+        .gifts p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #a30b37;
+        }
+        
+        .gift-details {
+            background: #a30b37;
+            padding: 0;
+            border-radius: 10px;
+            max-width: 350px;
+            margin: 30px auto;
+            text-align: left;
+            overflow: hidden;
+        }
+        
+        .gift-details[open] .gift-details-content {
+            max-height: 500px;
+            opacity: 1;
+            padding: 30px;
+        }
+        
+        .gift-details summary {
+            background: #a30b37;
+            padding: 10px 30px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 700;
+            text-align: center;
+            list-style: none;
+            user-select: none;
+            position: relative;
+            transition: background 0.3s;
+            color: #fff5bf;
+        }
+        
+        .gift-details summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .gift-details summary::after {
+            content: '▼';
+            position: absolute;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: transform 0.3s;
+            opacity: 0;
+            color: #fff5bf;
+        }
+        
+        .gift-details summary:hover::after {
+            opacity: 1;
+        }
+        
+        .gift-details[open] summary::after {
+            transform: translateY(-50%) rotate(180deg);
+            opacity: 1;
+        }
+        
+        .gift-details summary:hover {
+            background: rgba(163, 11, 55, 0.8);
+        }
+        
+        .gift-details-content {
+            padding: 0 30px;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.5s ease-out, opacity 0.5s ease-out, padding 0.5s ease-out;
+            color: #fff5bf;
+        }
+        
+        .gift-details[open] .gift-details-content {
+            max-height: 500px;
+            opacity: 1;
+            padding: 30px;
+        }
+        
+        .gift-details p {
+            margin: 10px 0;
+            color: #fff5bf;
+        }
+        
+        .gift-details strong {
+            font-weight: 700;
+            color: #fff5bf;
+        }
+        
+        footer {
+            background: #a30b37;
+            color: #fff5bf;
+            padding: 60px 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: start;
+        }
+        
+        .footer-left {
+            text-align: left;
+        }
+        
+        .footer-right {
+            text-align: left;
+        }
+        
+        footer h3 {
+            font-size: 60px;
+            margin-bottom: 20px;
+            font-weight: 400;
+            color: #fff5bf;
+        }
+        
+        footer h3 a {
+            color: #fff5bf;
+            text-decoration: none;
+        }
+        
+        footer p {
+            font-size: 22px;
+            line-height: 1.4;
+            margin-bottom: 30px;
+            color: #fff5bf;
+        }
+        
+        .contact {
+            margin-top: 30px;
+        }
+        
+        .contact h4 {
+            font-size: 18px;
+            margin-top: 20px;
+            margin-bottom: 5px;
+            color: #fff5bf;
+        }
+        
+        .contact p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #fff5bf;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 56px;
+            }
+            
+            .hero p {
+                font-size: 20px;
+            }
+            
+            .location h4 {
+                font-size: 32px;
+            }
+            
+            .rsvp h2 {
+                font-size: 32px;
+            }
+            
+            .gifts h2 {
+                font-size: 40px;
+            }
+            
+            footer h3 {
+                font-size: 40px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><a href="#">Mar y Daniel</a></h1>
+    </header>
+    
+    <section class="hero">
+        <h2>¡Nos casamos!</h2>
+        <p>30 de mayo de 2026</p>
+        <p>13:00 h.</p>
+    </section>
+    
+    
+    <div class="divider">
+        <svg preserveAspectRatio="xMidYMid meet" data-bbox="35.075 55.794 141.482 88.378" viewBox="35.075 55.794 141.482 88.378" height="200" width="200" xmlns="http://www.w3.org/2000/svg" data-type="color" role="presentation" aria-hidden="true" aria-label="">
+            <g>
+                <path fill="#a30b37" d="m71.705 89.67 23.22-2.92 26.765-1.947s24.749 2.016 25.842 1.58c4.718-1.83 9.682-3.693 14.702-3.052 5.915.755 10.913 4.931 14.323 9.822-10.103 3.637-22.554 16.024-32.63 19.735-5.232 1.927-10.836 2.579-16.386 3.118-5.766.56-11.554 1.013-17.346.909-14.53-.262-24.502-8.332-37.357-15.01-8.025.589-14.647 6.412-22.332 8.795-2.551.791-5.203 1.196-7.843 1.599-.369.056-.761.11-1.102-.039-.274-.119-.479-.354-.669-.586-3.855-4.716-5.172-11.002-5.673-17.073-.377-4.567-.199-9.626 2.838-13.057.482-.545 1.038-1.041 1.699-1.344.64-.293 1.354-.394 2.058-.392 2.104.004 4.096.875 6.038 1.688 7.243 3.033 14.738 5.464 23.853 8.175Z" data-color="1"></path>
+                <path fill="#a30b37" d="M87.595 86.889a158.9 158.9 0 0 1 52.309-2.424l-1.096-8.761c-.16-1.276-.329-2.586-.936-3.72-.795-1.486-8.549-9.518-12.052-11.027-2.254-.971-6.135-1.842-8.447-2.667-3.083-1.101-20.705-2.355-30.123-2.044-7.111.234-13.411-1.126-20.436 0-.841.135-3.47.538-4.124 1.084-3.339 2.783 3.251 5.703 6.336 6.401 15.201 3.436 30.125 1.019 46.597 2.056-11.388 1.015-22.855.367-34.281.767-3.96.139-7.992.419-11.681 1.866-.394.155-.844.404-.869.826-.015.253.136.484.295.68 1.126 1.384 2.928 2.011 4.669 2.397 2.429.539 4.92.735 7.405.852 7.004.33 14.021.046 21.027-.237l17.232-.698-37.794 4.131c-1.674.183-3.463.415-4.726 1.528-.166.147-.329.323-.361.543-.034.231.086.457.224.645.952 1.294 2.758 1.543 4.362 1.63 13.974.764 27.885-2.477 41.88-2.386-11.231 1.059-19.724 2.367-30.955 3.426-1.366.129-4.611 1.07-5.525 2.094s-1.53 2.121 1.07 3.04Z" data-color="1"></path>
+                <path fill="#a30b37" d="M90.7 113.876c1.414.855 4.298 1.739 5.908 2.113l5.593 1.298c1.529.355 2.812.461 4.365.687 7.126 1.037 14.071 1.065 21.169-.151 5.113-.876 10.834-1.515 15.785-3.544-1.377 6.804-5.422 11.331-10.303 16.268-2.442 2.47-5.131 4.73-8.173 6.408-8.317 4.586-18.313 4.41-27.808 4.645a256 256 0 0 0-29.316 2.42c-1.009.142-2.068.285-3.022-.072s-1.734-1.402-1.427-2.373c.129-.408.424-.741.73-1.04 2.279-2.229 5.458-3.25 8.559-3.991 12.578-3.006 25.561-2.099 38.614-2.099-11.848-2.291-23.472-.674-35.225-.875-1.024-.018-2.339-.279-2.504-1.29-.087-.529.216-1.045.577-1.441 1.612-1.769 4.277-1.979 6.669-2.054a559 559 0 0 1 34.916.001c-9.98-1.231-18.467-1.467-28.447-2.698-1.16-.143-4.173-1.728-3.975-2.88.146-.852 1.171-1.196 2.026-1.319 2.351-.337 4.739-.277 7.114-.208 8.829.256 18.04 2.632 26.475 1.114-8.857 0-15.812-.555-23.879-2.972-.852-.255-2.732-1.539-3.362-2.167s-2.155-2.199-1.059-3.78" data-color="1"></path>
+                <path fill="#fff5bf" d="M169.756 87.965c-.332 1.249-1.269 2.413-1.029 3.683.702.218 1.447.237 2.176.324 1.235.147 2.437.49 3.633.832-.496-1.016-1.265-1.869-2.024-2.706-.381-.42-.763-.842-1.204-1.199a7.2 7.2 0 0 0-1.552-.934" data-color="2"></path>
+                <path fill="#fff5bf" d="M168.429 92.54a7.1 7.1 0 0 0-.052 1.996c.021.185.061.388.211.499.194.143.467.059.691-.03l4.1-1.631c-.743-.205-1.512-.293-2.278-.38-.86-.098-1.719-.195-2.671-.454Z" data-color="2"></path>
+                <path fill="#fff5bf" d="M162.994 86.891c-.218.223-.381.513-.424.829s.043.658.259.884c.338.355.916.346 1.331.098a.8.8 0 0 0 .297-.277.8.8 0 0 0 .078-.544c-.109-.609-.793-1.026-1.541-.99" data-color="2"></path>
+                <path fill="#fff5bf" d="M161.818 87.367c-.051.323-.103.651-.063.976s.185.651.455.837c.12.083.258.134.395.185l.735.272c-.283.313-.795.342-1.163.138-.369-.204-.606-.593-.722-.998-.137-.478-.126-.998.364-1.409Z" data-color="2"></path>
+                <path fill="#fff5bf" d="m162.677 86.248.82-.169a.7.7 0 0 1 .239-.02c.123.02.223.104.319.184q.463.39.961.732c-.059-.497-.176-1.045-.586-1.333-.308-.216-.726-.231-1.082-.109-.356.121-.659.363-.67.714Z" data-color="2"></path>
+                <path fill="#fff5bf" d="M42.472 110.658c-4.573-5.838-6.558-13.63-5.336-20.944.524-3.138 1.69-6.301 4.026-8.46-1.091 3.087-2.187 6.2-2.651 9.441-.982 6.871.948 13.839 3.96 19.963Z" data-color="2"></path>
+                <path fill="#fff5bf" d="M70.92 91.403a21 21 0 0 0-.844 5.061c-.033.768-.023 1.544.142 2.295a5.7 5.7 0 0 0 1.087 2.296 34 34 0 0 1 .496-8.803c.06-.318.122-.661-.011-.956-.134-.295-.682-.528-.87.107" data-color="2"></path>
+                <path fill="#fff5bf" d="M43.814 109.191c.739.192 1.542.13 2.243-.172.544-.235 1.031-.61 1.608-.745.825-.193 1.782.117 2.486-.355.479-.321.722-.945 1.249-1.18.52-.232 1.115-.005 1.675.102 1.161.222 2.476-.167 3.158-1.132.407-.577.585-1.326 1.127-1.778 1.152-.961 3.002.053 4.369-.567 1.144-.519 1.655-2.06 2.877-2.35.635-.15 1.289.09 1.939.15a3.57 3.57 0 0 0 2.835-1.034 8.7 8.7 0 0 1-2.768-.237c-.893-.225-1.853-.589-2.697-.222-.877.382-1.257 1.392-1.85 2.143-.14.177-.3.347-.506.44-.237.107-.509.102-.769.078-1.176-.109-2.46-.531-3.469.084-.948.578-1.215 1.826-1.934 2.671-.255.3-.583.556-.967.643-.272.061-.555.035-.832.009l-1.686-.16c-.711-.068-1.511-.109-2.049.361-.324.282-.495.706-.813.994-.527.478-1.312.478-2.009.616-1.05.207-2.021.795-3.216 1.642Z" data-color="2"></path>
+            </g>
+        </svg>
+    </div>
+    
+    <section class="locations">
+        <div class="location-grid">
+            <div class="location">
+                <h3>Ceremonia</h3>
+                <h4>Parroquia<br>San Juan Bautista</h4>
+                <p>Calle Mayor, s/n, 03550 San Juan de Alicante</p>
+                <a href="https://maps.app.goo.gl/gS4Ckuwz2LFnxjQF9" target="_blank" class="btn">Cómo llegar</a>
+            </div>
+            
+            <div class="location">
+                <h3>Celebración</h3>
+                <h4>Jardines<br>Buganvilla</h4>
+                <p>Partida el volaor, 41, 03110 Muchamiel</p>
+                <a href="https://maps.app.goo.gl/7xCdBQQmt8TZ3WtW9" target="_blank" class="btn">Cómo llegar</a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="rsvp">
+        <h2>Confirma tu asistencia</h2>
+        <p>Esperamos tu respuesta antes del 30 de abril</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfSDowfEUMCZ5e83BNOgHWsHMWtBkK7PRE397GXxzbmlNueRg/viewform?usp=header" target="_blank" class="btn">Confirmar</a>
+    </section>
+    
+    <section class="gifts">
+        <h2>Regalos</h2>
+        <p>Vuestra presencia es lo más importante para nosotros.</p>
+        <p>Si deseáis hacernos un regalo, podéis hacer una aportación.</p>
+        
+        <details class="gift-details">
+            <summary>APORTACIÓN</summary>
+            <div class="gift-details-content">
+                <p>El regalo puede ser en dinero en efectivo, o, si os resulta más cómodo, también podéis realizar una transferencia.</p>
+                <br>
+                <p><strong>IBAN:</strong></p>
+                <p>ES63 0049 4293 4720 1404 0059</p>
+                <br>
+                <p><strong>DESTINATARIO:</strong></p>
+                <p>Mar Ramos Flores</p>
+                <p>Daniel Fenoll Castro</p>
+            </div>
+        </details>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-left">
+                <h3><a href="#">M&D</a></h3>
+            </div>
+            
+            <div class="footer-right">
+                <p>Gracias por acompañarnos<br>en este día tan especial</p>
+                
+                <div class="contact">
+                    <h4>Mar</h4>
+                    <p>670 01 60 05</p>
+                    
+                    <h4>Daniel</h4>
+                    <p>630 076 522</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
