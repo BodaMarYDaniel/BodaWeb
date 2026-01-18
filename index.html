@@ -494,14 +494,17 @@
     </footer>
     
     <script>
-        // Detect browser language and redirect if not Spanish or Catalan
+        // Detect browser language and redirect if not Spanish, Catalan, Italian or French
         const userLang = (navigator.language || navigator.userLanguage).toLowerCase();
-        const isSpanishOrCatalan = userLang.startsWith('es') || userLang.startsWith('ca');
+        const showSpanish = userLang.startsWith('es') || 
+                           userLang.startsWith('ca') || 
+                           userLang.startsWith('it') || 
+                           userLang.startsWith('fr');
         
         // Check if user has already been redirected (to avoid redirect loop)
         const hasVisited = sessionStorage.getItem('langChecked');
         
-        if (!isSpanishOrCatalan && !hasVisited) {
+        if (!showSpanish && !hasVisited) {
             sessionStorage.setItem('langChecked', 'true');
             window.location.href = '/english/';
         }
